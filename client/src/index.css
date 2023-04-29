@@ -1,0 +1,25 @@
+@import url("https://fonts.signalwerk.ch/css/latest/family=Open+Sans:ital,wght@0,300..800;1,300..800.css");
+
+body {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: #41b297;
+  font-weight: 700; /* bold */
+}
+a:hover {
+  color: black;
+}
