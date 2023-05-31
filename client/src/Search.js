@@ -117,7 +117,7 @@ function getSBERT(search) {
 }
 
 function searchAI(search, setResult) {
-  const [index, URL, requestOptions] = getOpenAI(search);
+  const [index, URL, requestOptions] = getOpenAI(`search for: ${search}`);
   // const [index, URL, requestOptions] = getSBERT(search);
   fetch(URL, requestOptions)
     .then((response) => response.json())
@@ -208,7 +208,12 @@ function Search() {
                 <img src={getImage(result.document.title)} alt="monkey" />
               </div>
               <div className="search__result-text">
-                <h3>{result.document.title}</h3>
+                <h3>
+                  {result.document.title}
+                  <span className="search__result-distance">
+                    {result?.vector_distance?.toFixed(3)}
+                  </span>
+                </h3>
 
                 {/* <p>
                   <small>{result.document.id}</small>
