@@ -1,5 +1,10 @@
 @import url("https://fonts.signalwerk.ch/css/latest/family=Open+Sans:ital,wght@0,300..800;1,300..800.css");
 
+:root {
+  font-size: 24px;
+  line-height: 1.4;
+}
+
 body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
@@ -15,6 +20,10 @@ select {
   font: inherit;
 }
 
+button {
+  padding: 0.25rem 0.6rem;
+}
+
 a {
   text-decoration: none;
   color: #41b297;
@@ -22,4 +31,9 @@ a {
 }
 a:hover {
   color: black;
+}
+
+img {
+  width: 100%;
+  display: block;
 }

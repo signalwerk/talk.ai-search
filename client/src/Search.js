@@ -3,6 +3,33 @@ import React, { useState } from "react";
 import "./Search.css";
 import Typesense from "typesense";
 
+import monkey1 from "./icons/noun-monkey-2006789.svg";
+import monkey2 from "./icons/noun-monkey-2006784.svg";
+import monkey3 from "./icons/noun-monkey-2017945.svg";
+import monkey4 from "./icons/noun-monkey-2006785.svg";
+import banana from "./icons/noun-banana-2026487.svg";
+import melon from "./icons/noun-water-melon-1006230.svg";
+
+function getImage(name) {
+  switch (name) {
+    case "Chimpanzee":
+      return monkey1;
+    case "Gorilla":
+      return monkey2;
+    case "Monkey":
+      return monkey3;
+    case "Bonobo":
+      return monkey4;
+    case "Banana":
+      return banana;
+    case "Watermelon":
+      return melon;
+
+    default:
+      return null;
+  }
+}
+
 const client = new Typesense.Client({
   nodes: [
     {
@@ -154,7 +181,6 @@ function Search() {
     <div className="search">
       <form>
         <br />
-        <br />
         <div>
           <label>
             <div className="search__label">Search</div>
@@ -178,6 +204,9 @@ function Search() {
         {results?.hits?.length &&
           results.hits.map((result) => (
             <div className="search__result" key={result.document.id}>
+              <div className="search__result-img">
+                <img src={getImage(result.document.title)} alt="monkey" />
+              </div>
               <div className="search__result-text">
                 <h3>{result.document.title}</h3>
 

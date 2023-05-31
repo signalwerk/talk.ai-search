@@ -9,18 +9,15 @@
   width: 100%;
   border: 1px solid #ccc;
   padding: 0.5rem;
-  font-size: 1.5rem;
   border-radius: 0.4rem;
-  line-height: 1.4;
   box-sizing: border-box;
 }
 .search__label {
-  font-size: 1.3rem;
   margin-bottom: 0.5rem;
   font-weight: 700; /* bold */
 }
 .search__results {
-  margin-top: 4rem;
+  margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
@@ -29,4 +26,9 @@
   border-bottom: 1px solid #ccc;
   margin-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+
+.search__result-img {
+  width: 4rem;
+  margin-right: 1rem;
 }
