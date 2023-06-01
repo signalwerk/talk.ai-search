@@ -1,7 +1,7 @@
 .search {
   margin-left: auto;
   margin-right: auto;
-  max-width: 50rem;
+  max-width: 35rem;
 }
 .search__input {
   all: unset;
@@ -11,6 +11,7 @@
   padding: 0.5rem;
   border-radius: 0.4rem;
   box-sizing: border-box;
+  height: 3.8rem;
 }
 .search__label {
   margin-bottom: 0.5rem;
@@ -35,6 +36,10 @@
 
 .search__result-distance {
   font-weight: 400;
-  margin-left: .8rem;
+  margin-left: 0.8rem;
   font-size: 0.7rem;
+}
+
+.search__submit {
+  margin-top: 1rem;
 }

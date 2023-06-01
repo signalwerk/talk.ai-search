@@ -10,6 +10,10 @@ import monkey4 from "./icons/noun-monkey-2006785.svg";
 import banana from "./icons/noun-banana-2026487.svg";
 import melon from "./icons/noun-water-melon-1006230.svg";
 
+// similarity
+// https://community.openai.com/t/embeddings-and-cosine-similarity/17761/20
+// https://weaviate.io/blog/distance-metrics-in-vector-search
+
 function getImage(name) {
   switch (name) {
     case "Chimpanzee":
@@ -177,6 +181,15 @@ function Search() {
     }
   };
 
+  const distance = (distance) => {
+    if (!distance) {
+      return null;
+    }
+
+    const fixed = distance.toFixed(3);
+    return <span className="search__result-distance">{fixed} · distance</span>;
+  };
+
   return (
     <div className="search">
       <form>
@@ -195,8 +208,7 @@ function Search() {
             />
           </label>
         </div>
-        <br />
-        <button type="submit" onClick={handleSubmit}>
+        <button className="search__submit" type="submit" onClick={handleSubmit}>
           GO
         </button>
       </form>
@@ -210,14 +222,8 @@ function Search() {
               <div className="search__result-text">
                 <h3>
                   {result.document.title}
-                  <span className="search__result-distance">
-                    {result?.vector_distance?.toFixed(3)}
-                  </span>
+                  {distance(result?.vector_distance)}
                 </h3>
-
-                {/* <p>
-                  <small>{result.document.id}</small>
-                </p> */}
               </div>
             </div>
           ))}
