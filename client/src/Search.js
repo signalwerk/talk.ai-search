@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./Search.css";
 import Typesense from "typesense";
@@ -9,6 +9,8 @@ import monkey3 from "./icons/noun-monkey-2017945.svg";
 import monkey4 from "./icons/noun-monkey-2006785.svg";
 import banana from "./icons/noun-banana-2026487.svg";
 import melon from "./icons/noun-water-melon-1006230.svg";
+
+import { Spinner } from "./Spinner";
 
 // similarity
 // https://community.openai.com/t/embeddings-and-cosine-similarity/17761/20
@@ -157,6 +159,13 @@ function searchAI(search, setResult) {
 function Search() {
   const [search, setSearch] = useState("");
   const [results, setResult] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    searchEmpty(setResult);
+    setLoading(false);
+  }, []);
 
   const onSearchChange = (e) => setSearch(e.target.value);
 
@@ -169,9 +178,11 @@ function Search() {
       return;
     }
 
-    //
-
-    searchAI(search, setResult);
+    setLoading(true);
+    searchAI(search, (data) => {
+      setResult(data);
+      setLoading(false);
+    });
   };
 
   const handleKeyDown = (event) => {
@@ -212,22 +223,27 @@ function Search() {
           GO
         </button>
       </form>
-      <div className="search__results">
-        {results?.hits?.length &&
-          results.hits.map((result) => (
-            <div className="search__result" key={result.document.id}>
-              <div className="search__result-img">
-                <img src={getImage(result.document.title)} alt="monkey" />
+
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className="search__results">
+          {results?.hits?.length &&
+            results.hits.map((result) => (
+              <div className="search__result" key={result.document.id}>
+                <div className="search__result-img">
+                  <img src={getImage(result.document.title)} alt="monkey" />
+                </div>
+                <div className="search__result-text">
+                  <h3>
+                    {result.document.title}
+                    {distance(result?.vector_distance)}
+                  </h3>
+                </div>
               </div>
-              <div className="search__result-text">
-                <h3>
-                  {result.document.title}
-                  {distance(result?.vector_distance)}
-                </h3>
-              </div>
-            </div>
-          ))}
-      </div>
+            ))}
+        </div>
+      )}
     </div>
   );
 }

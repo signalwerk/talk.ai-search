@@ -1,0 +1,24 @@
+.spinner {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.spinner__inner {
+  border: 0.2rem solid lightgray;
+  border-top: 0.2rem solid black;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
